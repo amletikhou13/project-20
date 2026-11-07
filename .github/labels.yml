@@ -1,0 +1,16 @@
+# Метки репозитория (создаются вручную в GitHub: Issues - Labels)
+- name: bug
+  color: d73a4a
+  description: Ошибка
+- name: enhancement
+  color: a2eeef
+  description: Новая функциональность
+- name: docs
+  color: 0075ca
+  description: Документация
+- name: module:patients
+  color: 5319e7
+  description: Модуль patients
+- name: module:appointments
+  color: 5319e7
+  description: Модуль appointments

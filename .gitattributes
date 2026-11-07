@@ -1,0 +1,18 @@
+# Нормализация окончаний строк: в репозитории всегда LF
+* text=auto eol=lf
+*.py text
+*.md text
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text
+*.txt text
+# Бинарные файлы: не сравнивать построчно
+*.png binary
+*.jpg binary
+*.pdf binary
+*.zip binary
+*.db binary
+*.sqlite3 binary
+# Диаграммы PlantUML считать отдельным языком в статистике GitHub
+*.puml linguist-language=PlantUML

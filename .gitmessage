@@ -1,0 +1,8 @@
+# <type>(<scope>): <краткое описание, до 72 символов, без точки>
+#
+# type: feat, fix, docs, style, refactor, test, chore, ci
+# scope (необязательно): core, patients, schedule, appointments, records
+#
+# Что и зачем изменено (при необходимости).
+#
+# Closes #номер_задачи

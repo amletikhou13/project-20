@@ -1,12 +1,13 @@
 """Точка входа clinic-project: создаёт Flask-приложение и подключает модули."""
+
 from flask import Flask
 
+from appointments.routes import bp as appointments_bp
 from core.config import Config
 from core.db import init_db
 from patients.routes import bp as patients_bp
-from schedule.routes import bp as schedule_bp
-from appointments.routes import bp as appointments_bp
 from records.routes import bp as records_bp
+from schedule.routes import bp as schedule_bp
 
 
 def create_app(config=None):

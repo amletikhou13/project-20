@@ -1,6 +1,7 @@
 import pytest
-from patients import service
+
 from core.exceptions import Conflict
+from patients import service
 
 
 def test_register_and_duplicate(app):

@@ -10,13 +10,23 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements-dev.txt
+      - name: Lint
+        run: |
+          ruff check .
+          black --check .
+          isort --check-only .
+      - name: Type check
+        run: mypy .
       - name: Check module dependencies
         run: python tools/check_deps.py
       - name: Check artifacts register
@@ -26,7 +36,7 @@ jobs:
       - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
+          name: test-reports-${{ matrix.python-version }}
           path: |
             test-report.xml
             coverage.xml

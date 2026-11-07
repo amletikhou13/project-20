@@ -1,11 +1,14 @@
 """Доступ к таблице patients."""
+
 from core.db import connect
 
 
 def add(full_name, birth_date, phone, policy):
     with connect() as c:
-        cur = c.execute("INSERT INTO patients(full_name,birth_date,phone,policy) VALUES(?,?,?,?)",
-                        (full_name, birth_date, phone, policy))
+        cur = c.execute(
+            "INSERT INTO patients(full_name,birth_date,phone,policy) VALUES(?,?,?,?)",
+            (full_name, birth_date, phone, policy),
+        )
         return cur.lastrowid
 
 

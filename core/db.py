@@ -1,4 +1,5 @@
 """Работа с SQLite: соединение и создание таблиц."""
+
 import sqlite3
 
 SCHEMA = """
@@ -11,7 +12,8 @@ CREATE TABLE IF NOT EXISTS slots(id INTEGER PRIMARY KEY, doctor_id INTEGER NOT N
   start TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'free');
 CREATE TABLE IF NOT EXISTS appointments(id INTEGER PRIMARY KEY, patient_id INTEGER NOT NULL REFERENCES patients(id),
   slot_id INTEGER UNIQUE NOT NULL REFERENCES slots(id), status TEXT NOT NULL DEFAULT 'active');
-CREATE TABLE IF NOT EXISTS record_entries(id INTEGER PRIMARY KEY, appointment_id INTEGER UNIQUE NOT NULL REFERENCES appointments(id),
+CREATE TABLE IF NOT EXISTS record_entries(id INTEGER PRIMARY KEY,
+  appointment_id INTEGER UNIQUE NOT NULL REFERENCES appointments(id),
   complaints TEXT, diagnosis TEXT NOT NULL, prescriptions TEXT);
 """
 _path = {"p": "clinic.db"}

@@ -1,8 +1,10 @@
 """Запись на приём и отмена (FR-03, FR-04; BR-01, BR-04)."""
+
 from datetime import datetime, timedelta
+
 from appointments import repository
-from core.exceptions import Conflict, NotFound
 from core.contracts import PatientDirectory, SlotCalendar
+from core.exceptions import Conflict, NotFound
 from patients import service as patients_service
 from schedule import service as schedule_service
 
@@ -25,6 +27,8 @@ def cancel(aid, now=None, hours=2, schedule: SlotCalendar = schedule_service):
     if not a:
         raise NotFound("запись не найдена")
     slot = schedule.get_slot(a["slot_id"])
+    if slot is None:
+        raise NotFound("слот не найден")
     now = now or datetime.now()
     if datetime.fromisoformat(slot["start"]) - now < timedelta(hours=hours):
         raise Conflict("отмена возможна не позднее чем за 2 часа")

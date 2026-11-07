@@ -1,5 +1,7 @@
 """HTTP-маршруты расписания."""
+
 from flask import Blueprint, jsonify
+
 from schedule import service
 
 bp = Blueprint("schedule", __name__, url_prefix="/schedule")

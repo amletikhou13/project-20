@@ -1,4 +1,5 @@
 """Доступ к врачам, специальностям и слотам."""
+
 from core.db import connect
 
 
@@ -19,8 +20,11 @@ def add_slot(doctor_id, start):
 
 def free_slots(specialty_id):
     with connect() as c:
-        rows = c.execute("""SELECT s.id, s.start, d.full_name AS doctor FROM slots s JOIN doctors d ON d.id=s.doctor_id
-                            WHERE d.specialty_id=? AND s.status='free' ORDER BY s.start""", (specialty_id,)).fetchall()
+        rows = c.execute(
+            """SELECT s.id, s.start, d.full_name AS doctor FROM slots s JOIN doctors d ON d.id=s.doctor_id
+                            WHERE d.specialty_id=? AND s.status='free' ORDER BY s.start""",
+            (specialty_id,),
+        ).fetchall()
         return [dict(r) for r in rows]
 
 
@@ -37,5 +41,7 @@ def set_status(sid, status):
 
 def day_schedule(doctor_id, day):
     with connect() as c:
-        rows = c.execute("SELECT * FROM slots WHERE doctor_id=? AND start LIKE ? ORDER BY start", (doctor_id, day + "%")).fetchall()
+        rows = c.execute(
+            "SELECT * FROM slots WHERE doctor_id=? AND start LIKE ? ORDER BY start", (doctor_id, day + "%")
+        ).fetchall()
         return [dict(r) for r in rows]

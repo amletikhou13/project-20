@@ -1,6 +1,7 @@
 """Медицинская карта и отчёт (FR-06, FR-07; BR-05)."""
-from records import repository
+
 from core.exceptions import Conflict
+from records import repository
 
 
 def add_entry(appointment_id, complaints, diagnosis, prescriptions):

@@ -17,3 +17,6 @@ pytest
 ## Артефакты
 Перечень артефактов проекта: docs/artifacts.md. Проверка перечня: python tools/check_artifacts.py
 Журнал изменений: CHANGELOG.md. Рабочий процесс CI: .github/workflows/ci.yml
+
+## Участие в разработке
+Правила веток, коммитов и Pull Request: CONTRIBUTING.md. Включение локальных хуков: git config core.hooksPath .githooks

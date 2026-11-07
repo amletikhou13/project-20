@@ -1,7 +1,7 @@
 """Проверка перечня артефактов docs/artifacts.md: число, уникальность ID, существование путей в Git."""
+
 import glob
 import os
-import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -11,10 +11,14 @@ ALLOWED = {"Готов", "В работе", "План", "Архив"}
 def main():
     text = open(os.path.join(ROOT, "docs", "artifacts.md"), encoding="utf-8").read()
     section = text.split("## Матрица артефактов")[1].split("##")[0]
-    rows = [[c.strip() for c in l.strip().strip("|").split("|")] for l in section.splitlines() if l.startswith("| A-")]
+    rows = [
+        [c.strip() for c in line.strip().strip("|").split("|")]
+        for line in section.splitlines()
+        if line.startswith("| A-")
+    ]
     errors, ids = [], set()
     for r in rows:
-        aid, name, place, status = r[0], r[1], r[5], r[7]
+        aid, place, status = r[0], r[5], r[7]
         if aid in ids:
             errors.append(f"{aid}: повторяющийся ID")
         ids.add(aid)

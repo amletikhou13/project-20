@@ -1,0 +1,19 @@
+# По умолчанию
+* @team-lead
+
+# Модули приложения
+/core/ @backend-dev
+/patients/ @backend-dev
+/schedule/ @backend-dev
+/appointments/ @backend-dev
+/records/ @backend-dev
+
+# Документация и перечень артефактов
+/docs/ @analyst
+
+# CI, хуки и шаблоны
+/.github/ @devops
+/.githooks/ @devops
+
+# Тесты
+/tests/ @qa

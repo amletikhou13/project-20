@@ -1,4 +1,5 @@
 """Модель предметной области: пациент."""
+
 from dataclasses import dataclass
 from typing import Optional
 

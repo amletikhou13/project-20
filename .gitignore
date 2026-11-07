@@ -1,10 +1,25 @@
+# Python
 __pycache__/
 *.pyc
 .venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+test-report.xml
+dist/
+
+# Секреты и локальные настройки: в репозитории только .env.example
 .env
+*.pem
+*.key
+
+# База данных и сборки
 *.db
+*.zip
+*.sha256
+
+# IDE
 .idea/
 .vscode/
-.pytest_cache/
-.coverage
-dist/
