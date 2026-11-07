@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Check module dependencies
+        run: python tools/check_deps.py
+      - name: Check artifacts register
+        run: python tools/check_artifacts.py
+      - name: Run tests with coverage
+        run: pytest -q --junitxml=test-report.xml --cov=. --cov-report=xml
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            test-report.xml
+            coverage.xml
+
+  release:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build source archive
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          git archive --format=zip --prefix=clinic-project-${VERSION}/ -o clinic-project-${VERSION}.zip HEAD
+          sha256sum clinic-project-${VERSION}.zip > clinic-project-${VERSION}.zip.sha256
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" clinic-project-*.zip clinic-project-*.zip.sha256 --title "$GITHUB_REF_NAME" --notes-file CHANGELOG.md
