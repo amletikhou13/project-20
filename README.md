@@ -13,3 +13,7 @@ pytest
 Проект разделён на модули core, patients, schedule, appointments, records (внутри каждого: models, repository, service, routes, tests).
 Проверка зависимостей и циклов: python tools/check_deps.py
 Тесты одного модуля: pytest appointments/tests/ -v
+
+## Артефакты
+Перечень артефактов проекта: docs/artifacts.md. Проверка перечня: python tools/check_artifacts.py
+Журнал изменений: CHANGELOG.md. Рабочий процесс CI: .github/workflows/ci.yml
