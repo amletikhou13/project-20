@@ -27,6 +27,8 @@ def cancel(aid, now=None, hours=2, schedule: SlotCalendar = schedule_service):
     if not a:
         raise NotFound("запись не найдена")
     slot = schedule.get_slot(a["slot_id"])
+    if slot is None:
+        raise NotFound("слот не найден")
     now = now or datetime.now()
     if datetime.fromisoformat(slot["start"]) - now < timedelta(hours=hours):
         raise Conflict("отмена возможна не позднее чем за 2 часа")
