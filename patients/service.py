@@ -1,0 +1,16 @@
+"""Бизнес-логика пациентов (FR-01)."""
+from patients import repository
+from core.exceptions import Conflict, NotFound
+
+
+def register(full_name, birth_date, phone, policy):
+    if repository.by_policy(policy):
+        raise Conflict("пациент с таким полисом уже есть")
+    return repository.add(full_name, birth_date, phone, policy)
+
+
+def get(pid):
+    p = repository.get(pid)
+    if not p:
+        raise NotFound("пациент не найден")
+    return p
