@@ -1,4 +1,5 @@
 """Модель предметной области: запись на приём."""
+
 from dataclasses import dataclass
 
 

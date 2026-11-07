@@ -1,10 +1,13 @@
 """Тесты модуля appointments: правила записи и отмены (BR-01, BR-04)."""
+
 from datetime import datetime
+
 import pytest
+
 from appointments import service
+from core.exceptions import Conflict
 from patients import service as patients
 from schedule import service as schedule
-from core.exceptions import Conflict
 
 
 def _setup():

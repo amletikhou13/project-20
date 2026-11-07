@@ -1,5 +1,7 @@
 """HTTP-маршруты пациентов."""
-from flask import Blueprint, request, jsonify
+
+from flask import Blueprint, jsonify, request
+
 from patients import service
 
 bp = Blueprint("patients", __name__, url_prefix="/patients")

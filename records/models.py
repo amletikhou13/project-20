@@ -1,4 +1,5 @@
 """Модель предметной области: запись в медицинской карте."""
+
 from dataclasses import dataclass
 from typing import Optional
 

@@ -3,6 +3,7 @@
 Запуск: python tools/check_deps.py [--dot graph.dot]
 Код возврата 0 - нарушений нет, 1 - найдены нарушения.
 """
+
 import ast
 import sys
 from pathlib import Path
@@ -64,7 +65,7 @@ def find_cycle(edges):
         stack.append(v)
         for w in graph[v]:
             if state.get(w) == 1:
-                return stack[stack.index(w):] + [w]
+                return stack[stack.index(w) :] + [w]
             if w not in state:
                 c = dfs(w)
                 if c:
@@ -98,7 +99,7 @@ def check_all(root=ROOT):
 
 
 def to_dot(edges):
-    lines = ["digraph deps {", "  rankdir=BT;", '  node [shape=box];']
+    lines = ["digraph deps {", "  rankdir=BT;", "  node [shape=box];"]
     lines += [f"  {a} -> {b};" for a, b in sorted(edges)]
     return "\n".join(lines + ["}"])
 

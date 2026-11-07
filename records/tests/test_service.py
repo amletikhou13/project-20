@@ -1,6 +1,7 @@
 import pytest
-from records import service
+
 from core.exceptions import Conflict
+from records import service
 
 
 def test_diagnosis_required(app):

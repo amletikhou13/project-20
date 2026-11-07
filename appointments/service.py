@@ -1,8 +1,10 @@
 """Запись на приём и отмена (FR-03, FR-04; BR-01, BR-04)."""
+
 from datetime import datetime, timedelta
+
 from appointments import repository
-from core.exceptions import Conflict, NotFound
 from core.contracts import PatientDirectory, SlotCalendar
+from core.exceptions import Conflict, NotFound
 from patients import service as patients_service
 from schedule import service as schedule_service
 

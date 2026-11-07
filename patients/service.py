@@ -1,6 +1,7 @@
 """Бизнес-логика пациентов (FR-01)."""
-from patients import repository
+
 from core.exceptions import Conflict, NotFound
+from patients import repository
 
 
 def register(full_name, birth_date, phone, policy):

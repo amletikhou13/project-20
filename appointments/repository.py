@@ -1,4 +1,5 @@
 """Доступ к таблице appointments."""
+
 from core.db import connect
 
 

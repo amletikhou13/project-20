@@ -1,4 +1,5 @@
 """Модели предметной области: врач и слот расписания."""
+
 from dataclasses import dataclass
 
 
