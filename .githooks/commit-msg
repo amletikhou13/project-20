@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Проверка сообщения коммита по Conventional Commits.
+msg=$(head -n 1 "$1")
+re='^(feat|fix|docs|style|refactor|test|chore|ci)(\([a-z_]+\))?: .{1,72}$'
+case "$msg" in
+  Merge*) exit 0 ;;
+esac
+if ! echo "$msg" | grep -Eq "$re"; then
+  echo "commit-msg: сообщение не соответствует Conventional Commits:"
+  echo "  $msg"
+  echo "Ожидается: <type>(<scope>): <описание>, например fix(patients): validate phone"
+  exit 1
+fi

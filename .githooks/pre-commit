@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Локальный хук без внешних зависимостей. Включение: git config core.hooksPath .githooks
+# Запускает те же проверки, что и CI: стиль, ошибки, зависимости модулей, тесты.
+set -e
+echo "pre-commit: black"
+black --check -q .
+echo "pre-commit: ruff"
+ruff check -q .
+echo "pre-commit: зависимости модулей"
+python3 tools/check_deps.py > /dev/null
+echo "pre-commit: pytest"
+python3 -m pytest -q -p no:cacheprovider
+echo "pre-commit: все проверки пройдены"

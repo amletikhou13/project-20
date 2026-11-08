@@ -1,0 +1,22 @@
+# clinic-project
+
+ИС медицинской клиники (Python, Flask, SQLite).
+
+## Запуск
+pip install -r requirements.txt
+python app.py
+
+## Тесты
+pytest
+
+## Модульная структура
+Проект разделён на модули core, patients, schedule, appointments, records (внутри каждого: models, repository, service, routes, tests).
+Проверка зависимостей и циклов: python tools/check_deps.py
+Тесты одного модуля: pytest appointments/tests/ -v
+
+## Артефакты
+Перечень артефактов проекта: docs/artifacts.md. Проверка перечня: python tools/check_artifacts.py
+Журнал изменений: CHANGELOG.md. Рабочий процесс CI: .github/workflows/ci.yml
+
+## Участие в разработке
+Правила веток, коммитов и Pull Request: CONTRIBUTING.md. Включение локальных хуков: git config core.hooksPath .githooks
